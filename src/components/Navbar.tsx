@@ -5,9 +5,9 @@ import { Menu, X } from "lucide-react";
 const links = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Experience", href: "#experience" },
+  { label: "Hire Me", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#home" className="font-heading font-bold text-xl text-primary glow-text">
-          OJR<span className="text-foreground">L</span>
+          Orlie<span className="text-foreground"> Labrador</span>
         </a>
 
         {/* Desktop */}

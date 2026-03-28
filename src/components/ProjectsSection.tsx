@@ -1,30 +1,38 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { X, ExternalLink, Zap, BarChart3, Bot, PieChart } from "lucide-react";
+import zapierImg from "@/assets/zapier-ai-content.png";
+import n8nImg from "@/assets/n8n-network.png";
 
 const projects = [
   {
     icon: Zap,
-    title: "Lead Generation Funnels",
-    category: "GoHighLevel",
-    summary: "Built lead generation funnels using GoHighLevel (GHL) for capturing and nurturing leads.",
+    title: "AI Content Repurposing",
+    category: "Zapier Automation",
+    image: zapierImg,
+    summary: "Automated AI-powered content repurposing workflow using Zapier to generate blog posts and social media content from audio/video files.",
     details: [
-      "Designed multi-step funnel pages with opt-in forms",
-      "Configured GHL automations for follow-up sequences",
-      "Integrated email and SMS workflows for lead nurturing",
-      "Set up tracking and analytics for funnel performance",
+      "Google Drive trigger monitors for new uploaded files",
+      "Zapier AI generates transcription from uploaded media",
+      "AI automatically generates 2 blog posts from transcription",
+      "Looping and path logic splits content for different platforms",
+      "Auto-publishes to Facebook Pages and LinkedIn simultaneously",
+      "End-to-end automation with zero manual intervention",
     ],
   },
   {
     icon: Bot,
-    title: "Automation Workflows",
-    category: "Zapier / Make.com / n8n",
-    summary: "Created automation workflows using Zapier, Make.com, n8n, and Power Automate.",
+    title: "n8n Integration Network",
+    category: "n8n / Automation",
+    image: n8nImg,
+    summary: "Built a comprehensive automation network connecting multiple platforms and tools using n8n for seamless data flow.",
     details: [
-      "Automated data sync between multiple platforms",
-      "Built multi-step workflows with conditional logic",
-      "Integrated CRM, email, and project management tools",
-      "Reduced manual data entry by automating repetitive tasks",
+      "Connected 15+ platforms including Stripe, HubSpot, Slack, and Discord",
+      "Real-time data synchronization between services",
+      "Automated notifications via Telegram and Discord",
+      "Integrated AI services (ChatGPT, Claude AI, Gemini, Perplexity)",
+      "Centralized workflow management with visual node editor",
+      "Scalable architecture supporting new integrations",
     ],
   },
   {
@@ -41,14 +49,14 @@ const projects = [
   },
   {
     icon: PieChart,
-    title: "Process Automation",
-    category: "Power Automate",
-    summary: "Automated repetitive processes and notifications to improve business efficiency.",
+    title: "Lead Generation Funnels",
+    category: "GoHighLevel",
+    summary: "Built lead generation funnels using GoHighLevel (GHL) for capturing and nurturing leads.",
     details: [
-      "Built Power Automate flows for approval workflows",
-      "Automated report generation and distribution",
-      "Created notification systems for critical events",
-      "Streamlined document management processes",
+      "Designed multi-step funnel pages with opt-in forms",
+      "Configured GHL automations for follow-up sequences",
+      "Integrated email and SMS workflows for lead nurturing",
+      "Set up tracking and analytics for funnel performance",
     ],
   },
 ];
@@ -75,7 +83,7 @@ const ProjectsSection = () => {
           {projects.map((p, i) => (
             <motion.div
               key={p.title}
-              className="glass-card rounded-xl p-6 cursor-pointer click-ripple group"
+              className="glass-card rounded-xl overflow-hidden cursor-pointer click-ripple group"
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -83,17 +91,24 @@ const ProjectsSection = () => {
               whileTap={{ scale: 0.97 }}
               onClick={() => setSelected(i)}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <p.icon className="w-6 h-6 text-primary" />
+              {p.image && (
+                <div className="w-full h-48 overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div>
-                  <span className="text-primary/60 text-xs font-heading uppercase tracking-wider">{p.category}</span>
-                  <h3 className="font-heading font-semibold text-lg mb-1">{p.title}</h3>
-                  <p className="text-muted-foreground text-sm">{p.summary}</p>
-                  <span className="inline-flex items-center gap-1 text-primary text-xs mt-3 group-hover:gap-2 transition-all">
-                    View Details <ExternalLink className="w-3 h-3" />
-                  </span>
+              )}
+              <div className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <p.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-primary/60 text-xs font-heading uppercase tracking-wider">{p.category}</span>
+                    <h3 className="font-heading font-semibold text-lg mb-1">{p.title}</h3>
+                    <p className="text-muted-foreground text-sm">{p.summary}</p>
+                    <span className="inline-flex items-center gap-1 text-primary text-xs mt-3 group-hover:gap-2 transition-all">
+                      View Details <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -112,38 +127,45 @@ const ProjectsSection = () => {
           >
             <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSelected(null)} />
             <motion.div
-              className="glass-card rounded-2xl p-8 max-w-lg w-full relative z-10 border border-primary/20"
+              className="glass-card rounded-2xl max-w-lg w-full relative z-10 border border-primary/20 overflow-hidden"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
-                <X className="w-5 h-5" />
-              </button>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  {(() => { const Icon = projects[selected].icon; return <Icon className="w-5 h-5 text-primary" />; })()}
+              {projects[selected].image && (
+                <div className="w-full h-56 overflow-hidden">
+                  <img src={projects[selected].image} alt={projects[selected].title} className="w-full h-full object-cover object-top" />
                 </div>
-                <div>
-                  <span className="text-primary/60 text-xs font-heading uppercase tracking-wider">{projects[selected].category}</span>
-                  <h3 className="font-heading font-bold text-xl">{projects[selected].title}</h3>
+              )}
+              <div className="p-8">
+                <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-background/50 rounded-full p-1">
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    {(() => { const Icon = projects[selected].icon; return <Icon className="w-5 h-5 text-primary" />; })()}
+                  </div>
+                  <div>
+                    <span className="text-primary/60 text-xs font-heading uppercase tracking-wider">{projects[selected].category}</span>
+                    <h3 className="font-heading font-bold text-xl">{projects[selected].title}</h3>
+                  </div>
                 </div>
+                <p className="text-muted-foreground mb-4">{projects[selected].summary}</p>
+                <ul className="space-y-2">
+                  {projects[selected].details.map((d, j) => (
+                    <motion.li
+                      key={j}
+                      className="text-foreground/80 text-sm flex gap-2"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: j * 0.1 }}
+                    >
+                      <span className="text-primary mt-0.5 shrink-0">▸</span>
+                      {d}
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
-              <p className="text-muted-foreground mb-4">{projects[selected].summary}</p>
-              <ul className="space-y-2">
-                {projects[selected].details.map((d, j) => (
-                  <motion.li
-                    key={j}
-                    className="text-foreground/80 text-sm flex gap-2"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: j * 0.1 }}
-                  >
-                    <span className="text-primary mt-0.5 shrink-0">▸</span>
-                    {d}
-                  </motion.li>
-                ))}
-              </ul>
             </motion.div>
           </motion.div>
         )}
