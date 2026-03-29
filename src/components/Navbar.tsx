@@ -7,7 +7,6 @@ const links = [
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Hire Me", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -30,10 +29,6 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#home" className="font-heading font-bold text-xl text-primary glow-text">
-          Orlie<span className="text-foreground"> Labrador</span>
-        </a>
-
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
@@ -46,6 +41,14 @@ const Navbar = () => {
             </a>
           ))}
         </div>
+
+        {/* Hire Me CTA */}
+        <a
+          href="#contact"
+          className="hidden md:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-lg font-heading font-semibold text-sm hover:brightness-110 transition-all shadow-[0_0_15px_-3px_hsl(175_70%_45%_/_0.4)]"
+        >
+          Hire Me
+        </a>
 
         {/* Mobile toggle */}
         <button onClick={() => setOpen(!open)} className="md:hidden text-foreground">
@@ -72,6 +75,13 @@ const Navbar = () => {
                 {l.label}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center bg-primary text-primary-foreground px-5 py-2 rounded-lg font-heading font-semibold text-sm"
+            >
+              Hire Me
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
