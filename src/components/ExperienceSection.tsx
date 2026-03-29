@@ -6,7 +6,7 @@ const experiences = [
   {
     title: "IT Officer",
     company: "Intelligent Outsourcing Inc.",
-    period: "April 2024 – Present",
+    period: "April 2024 – December 2025",
     points: [
       "Managed full IT operations across onsite and remote teams",
       "Administered Microsoft 365, Azure AD, and Intune environments",
