@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Workflow, Settings, MonitorSmartphone, Database, Users, FolderKanban } from "lucide-react";
+import { Workflow, Settings, MonitorSmartphone, Database, Plug, Wrench } from "lucide-react";
 
 const services = [
   { icon: Workflow, title: "Workflow Automation", desc: "Zapier, Make.com, n8n, Power Automate – automating repetitive processes and notifications." },
   { icon: Settings, title: "GoHighLevel (GHL)", desc: "Funnels, CRM setup, automation workflows, and pipeline management." },
   { icon: MonitorSmartphone, title: "Remote Support", desc: "Troubleshooting, system maintenance, and helpdesk support for onsite & remote teams." },
   { icon: Database, title: "System Administration", desc: "Microsoft 365, Azure AD, Intune, Google Workspace management and configuration." },
-  { icon: Users, title: "CRM & Pipeline Management", desc: "ConnectWise ticketing, CRM workflows, lead tracking, and customer management." },
-  { icon: FolderKanban, title: "Project Management", desc: "Asana-based project coordination, process optimization, and workflow design." },
+  { icon: Plug, title: "API Integrations", desc: "Connect and integrate APIs for smooth data flow between your tools and platforms." },
+  { icon: Wrench, title: "Automation Troubleshooting", desc: "Debug, optimize, and maintain your existing automation workflows for peak performance." },
 ];
 
 const ServicesSection = () => {

@@ -8,24 +8,20 @@ const ContactSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       toast({ title: "Error", description: "Please fill in all fields.", variant: "destructive" });
       return;
     }
 
-    setSending(true);
+    const subject = `Portfolio Inquiry from ${formData.name}`;
+    const body = `Hi Orlie,\n\nI'm ${formData.name} (${formData.email}).\n\n${formData.message}`;
+    const mailtoUrl = `mailto:orliejohnrusselllabrador@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, "_blank");
 
-    // Open WhatsApp with the message
-    const text = `Hi, I'm ${formData.name} (${formData.email}).\n\n${formData.message}`;
-    const whatsappUrl = `https://wa.me/639154332921?text=${encodeURIComponent(text)}`;
-    window.open(whatsappUrl, "_blank");
-
-    toast({ title: "Redirecting to WhatsApp", description: "Your message is being prepared in WhatsApp." });
-    setSending(false);
+    toast({ title: "Opening Email Client", description: "Your message is being prepared in your email app." });
   };
 
   return (
@@ -78,7 +74,6 @@ const ContactSection = () => {
               </motion.a>
             ))}
 
-            {/* Social links */}
             <div className="flex gap-4 pt-2">
               <a href="https://www.linkedin.com/in/jhaytech" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -125,12 +120,11 @@ const ContactSection = () => {
             </div>
             <motion.button
               type="submit"
-              disabled={sending}
-              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-heading font-semibold flex items-center justify-center gap-2 click-ripple disabled:opacity-50"
+              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-heading font-semibold flex items-center justify-center gap-2 click-ripple"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Send className="w-4 h-4" /> {sending ? "Sending..." : "Send Message via WhatsApp"}
+              <Send className="w-4 h-4" /> Send Message via Email
             </motion.button>
           </motion.form>
         </div>
