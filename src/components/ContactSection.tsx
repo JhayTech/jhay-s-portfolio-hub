@@ -51,7 +51,7 @@ const ContactSection = () => {
 
             {[
               { icon: Mail, label: "Email", value: "orliejohnrusselllabrador@yahoo.com", href: "mailto:orliejohnrusselllabrador@yahoo.com" },
-              { icon: Phone, label: "Phone", value: "+63 915 433 2921", href: "tel:+639154332921" },
+              
               { icon: MessageCircle, label: "WhatsApp", value: "+63 915 433 2921", href: "https://wa.me/639154332921" },
               { icon: MapPin, label: "Location", value: "Olongapo City, Philippines", href: "#" },
             ].map((item) => (

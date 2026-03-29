@@ -1,12 +1,19 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { X, ExternalLink, Zap, BarChart3, PieChart, Monitor, Shield, Cog } from "lucide-react";
+import { X, ExternalLink, Zap, Monitor, Shield, Cog, Bot, Mail, FileVideo, BrainCircuit, Workflow } from "lucide-react";
 import zapierImg from "@/assets/zapier-ai-content.png";
 import zapier2Img from "@/assets/zapier-2.png";
 import zapier3Img from "@/assets/zapier-3.png";
 import powerAutomateImg from "@/assets/power-automate-onboarding.png";
 import m365Img from "@/assets/m365-admin.png";
 import intuneImg from "@/assets/intune-admin.png";
+import n8nRagImg from "@/assets/n8n-basic-rag-demo.jpg";
+import makeGmailImg from "@/assets/make-auto-sort-gmail.jpg";
+import makeXeroImg from "@/assets/make-xero-asana.jpg";
+import n8nFbImg from "@/assets/n8n-ai-agent-facebook.jpg";
+import n8nJobImg from "@/assets/n8n-ai-job-scraper.jpg";
+import n8nReceptionistImg from "@/assets/n8n-ai-receptionist.jpg";
+import n8nAsmrImg from "@/assets/n8n-asmr-video-creator.jpg";
 
 const projects = [
   {
@@ -55,6 +62,111 @@ const projects = [
     ],
   },
   {
+    icon: BrainCircuit,
+    title: "Basic RAG Demo",
+    category: "n8n Automation",
+    image: n8nRagImg,
+    summary: "n8n workflow implementing a Retrieval-Augmented Generation (RAG) system with Google Drive, Supabase Vector Store, and Google Gemini AI Agent.",
+    details: [
+      "Google Drive file triggers for created, updated, and deleted files",
+      "Automatic document download and embedding generation",
+      "Supabase Vector Store for semantic search and retrieval",
+      "AI Agent powered by Google Gemini Chat Model",
+      "Default Data Loader for document processing pipeline",
+      "Chat message trigger for interactive Q&A sessions",
+    ],
+  },
+  {
+    icon: Bot,
+    title: "AI Agent for Facebook",
+    category: "n8n Automation",
+    image: n8nFbImg,
+    summary: "n8n webhook-based AI agent that processes Facebook messages, retrieves context documents, and responds intelligently via HTTP requests.",
+    details: [
+      "Webhook trigger handles GET and POST requests from Facebook",
+      "Conditional logic (If/Filter) for message routing",
+      "Document retrieval for context-aware AI responses",
+      "Google Gemini Chat Model with Simple Memory for conversation history",
+      "HTTP Request node for sending responses back to Facebook",
+      "Automated webhook verification and response handling",
+    ],
+  },
+  {
+    icon: BrainCircuit,
+    title: "AI Job Scraper + Resume Optimizer",
+    category: "n8n Automation",
+    image: n8nJobImg,
+    summary: "Complex n8n workflow that scrapes job listings, analyzes them with AI, optimizes resumes, and drafts personalized application emails.",
+    details: [
+      "Slack trigger initiates job search queries",
+      "Query validation and intelligent error handling",
+      "Web scraping for job listings with result parsing",
+      "Loop-based processing for multiple job matches",
+      "AI-powered resume content optimization with OpenRouter",
+      "Automated email draft creation and Google Drive file management",
+    ],
+  },
+  {
+    icon: Bot,
+    title: "AI Receptionist",
+    category: "n8n Automation",
+    image: n8nReceptionistImg,
+    summary: "Multi-workflow n8n AI receptionist handling appointment booking, rescheduling, cancellation, and calendar management with VAPI integration.",
+    details: [
+      "GetSlots workflow checks calendar availability in real-time",
+      "Bookslots workflow handles appointment creation with validation",
+      "UpdateSlots workflow manages rescheduling with conflict detection",
+      "CancelSlots workflow processes cancellations and record updates",
+      "VAPI integration for voice-based appointment interactions",
+      "Comprehensive error handling and friendly user responses",
+    ],
+  },
+  {
+    icon: FileVideo,
+    title: "ASMR Video Creator",
+    category: "n8n Automation",
+    image: n8nAsmrImg,
+    summary: "Automated n8n pipeline that generates ASMR videos using AI, processes them, and publishes to YouTube and Facebook on a schedule.",
+    details: [
+      "Schedule Trigger for automated daily/weekly video creation",
+      "JWT authentication for Google API access",
+      "AI prompt generation with Google Gemini and Structured Output",
+      "Video generation via API with polling for completion",
+      "Content filtering and error handling before publishing",
+      "Auto-upload to YouTube and Facebook Graph API",
+    ],
+  },
+  {
+    icon: Mail,
+    title: "Auto Sort Gmail Attachments on Drive",
+    category: "Make.com Automation",
+    image: makeGmailImg,
+    summary: "Make.com scenario that watches Gmail for new emails, analyzes attachments with AI, renames files, uploads to Google Drive, and logs everything.",
+    details: [
+      "Gmail watch trigger monitors incoming emails every 15 minutes",
+      "Lists and extracts email attachments automatically",
+      "AI-powered file analysis to generate descriptive filenames",
+      "Organized upload to Google Drive with smart folder structure",
+      "Google Sheets logging for attachment tracking and audit trail",
+      "Email notification sent after successful processing",
+    ],
+  },
+  {
+    icon: Workflow,
+    title: "Automated Export Xero Transactions to Asana",
+    category: "Make.com Automation",
+    image: makeXeroImg,
+    summary: "Make.com workflow connecting Asana, Xero, and Google Sheets to export account transactions, process data, and upload CSV reports.",
+    details: [
+      "Asana watch trigger for completed task events",
+      "Xero API integration for account transaction export",
+      "Router for multi-path data processing",
+      "Iterator and Google Sheets for row-by-row data logging",
+      "Text aggregation and CSV attachment upload to Asana",
+      "Automated cleanup of processed data ranges",
+    ],
+  },
+  {
     icon: Cog,
     title: "Onboarding New Team Member",
     category: "Power Automate",
@@ -95,30 +207,6 @@ const projects = [
       "Application deployment and update management",
       "Security baseline and conditional access policies",
       "Device inventory monitoring and reporting",
-    ],
-  },
-  {
-    icon: BarChart3,
-    title: "CRM Pipeline Setup",
-    category: "CRM Management",
-    summary: "Practiced CRM pipeline setup and lead tracking for business process optimization.",
-    details: [
-      "Designed custom pipeline stages for sales processes",
-      "Configured lead scoring and automated status updates",
-      "Set up dashboards for pipeline visibility",
-      "Created automated notifications for stage transitions",
-    ],
-  },
-  {
-    icon: PieChart,
-    title: "Lead Generation Funnels",
-    category: "GoHighLevel",
-    summary: "Built lead generation funnels using GoHighLevel (GHL) for capturing and nurturing leads.",
-    details: [
-      "Designed multi-step funnel pages with opt-in forms",
-      "Configured GHL automations for follow-up sequences",
-      "Integrated email and SMS workflows for lead nurturing",
-      "Set up tracking and analytics for funnel performance",
     ],
   },
 ];
@@ -197,11 +285,7 @@ const ProjectsSection = () => {
                 <X className="w-5 h-5" />
               </button>
 
-              {projects[selected].image && (
-                <div className="w-full">
-                  <img src={projects[selected].image} alt={projects[selected].title} className="w-full h-auto" />
-                </div>
-              )}
+              {/* Details on top */}
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -213,7 +297,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">{projects[selected].summary}</p>
-                <ul className="space-y-2">
+                <ul className="space-y-2 mb-6">
                   {projects[selected].details.map((d, j) => (
                     <motion.li
                       key={j}
@@ -228,6 +312,13 @@ const ProjectsSection = () => {
                   ))}
                 </ul>
               </div>
+
+              {/* Image on bottom */}
+              {projects[selected].image && (
+                <div className="w-full border-t border-primary/10">
+                  <img src={projects[selected].image} alt={projects[selected].title} className="w-full h-auto" />
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
